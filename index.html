@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- thugged bootstrap starter template off bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>🦦previewer</title>
+    <script src="./js/marked.js"></script> <!-- run marked in devTools to make sure it's firing -->
+    <script>
+        // Compile/ render  func set up in marked js
+        // console.log(marked("# weasel"));            // use marked() call to test to check if the engine is working - look to devTools
+
+        // func that set's whatever's typed into editor pane to preview pane
+        function pushToPreview() { 
+            // document.getElementById("preview").innerHTML = marked(document.getElementById("editor").value);
+            let previewElem = document.getElementById("preview");
+            let editorVal = document.getElementById("editor").value;
+            let markedHTML = marked(editorVal);
+            previewElem.innerHTML = markedHTML;                                                                                                  
+        }
+        // need to set up the default state when windown first loads and runs MD previewer
+        
+        // saving default page load state to func
+        window.onload = setDefault();
+
+        function setDefault() {
+            // var to set preview text. user-story no. 5
+            const previewTextPlaceholder = `# H1
+## H2...
+
+inline code \`<div>weasel</div>\`
+
+\`\`\`
+// multi-line code:
+
+exFunc() {
+    return someRandomWeasel;
+}
+\`\`\`
+
+**bold**
+_italic_
+**_both!_**
+
+[shamless self-promotion link](https://cunning-weasel.github.io/cunning-weasel-GitHub-Page/),
+> Block Quote
+
+- lists
+    - bulleted
+- indentation
+    - y
+
+1. numbererd list
+1. just 1s
+
+![weasel-img](https://www.mammal.org.uk/sites/default/files/styles/medium/public/Weasel4bb0.jpg?itok=rhXCBkY9)`;
+            // document.getElementById("editor").value = previewTextPlaceholder;
+            let editorPane = document.getElementById("editor");
+            let previewPane = document.getElementById("preview");
+            editorPane.value = previewTextPlaceholder;
+            previewPane.innerHTML = marked(previewTextPlaceholder);
+        }
+    </script>
+</head>
+
+<body onload="setDefault()">        <!-- call default state for page body -->
+    <div class="container-fluid">
+
+        <div class="row" >
+            <div class="col text-center bg-dark">
+                <h1 class="text-white">preview-a-🦦</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- start editor comp -->
+            <div class="col-6 text-center bg-sucess d-flex flex-column">
+                <h2>editor 👇</h2>
+                <div class="form-group flex-grow-1 d-flex flex-column">
+                    <textarea id="editor" onkeyup="pushToPreview()" class="form-control flex-grow-1"></textarea> <!-- func call to MD as you type -->
+            </div>
+            </div>
+            <!-- start previewer comp -->
+            <div class="col-6 text-center bg-info d-flex flex-column">
+                <h2 class="text-white">MD preview: 👇</h2>
+                <div id="preview"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+</body>
+
+</html>
