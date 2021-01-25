@@ -1,3 +1,2 @@
 # markdown_Previewer
-![image info](C:\Users\Paul\Downloads\Capture.png) 
-![image info](./pictures/capture.png)
+![alt text](https://www.freecodecamp.org/news/content/images/2020/06/markdown-previewer.png)
